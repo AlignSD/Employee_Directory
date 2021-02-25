@@ -71,9 +71,12 @@
 // 
 
 import React, { useMemo, useState, useEffect } from "react";
-
+import ReactTable from "react-table-6";  
+import "react-table-6/react-table.css" 
 import Table from "./components/tablecomponent/table";
 import axios from "axios";
+import 'react-table-6/react-table.css';
+import Bootstrap from "bootstrap/dist/css/bootstrap.min.css";
 
 // import "./App.css";
 
@@ -124,7 +127,7 @@ function App() {
   useEffect(() => {
     (async () => {
       const result = await axios("https://randomuser.me/api/?results=20");
-      console.log(result);
+      console.log(result.data.results);
       setData(result.data.results);
     })();
   }, []);
