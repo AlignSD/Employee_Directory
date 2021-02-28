@@ -103,7 +103,10 @@ function App() {
           },
           {
             Header: "First Name",
-            accessor: "name.first"
+            accessor: "name.first",
+            filterMethod: (filter, row) =>
+                    row[filter.id].startsWith(filter.value) &&
+                    row[filter.id].endsWith(filter.value)
           },
           {
             Header: "Last name",
@@ -134,7 +137,10 @@ function App() {
 
   return (
     <div className="App">
-      <Table columns={columns} data={data} />
+      <Table columns={columns} data={data} 
+      filterable
+      defaultFilterMethod={(filter, row) =>
+        String(row[filter.id]) === filter.value} />
     </div>
   );
 }

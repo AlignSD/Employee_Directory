@@ -5,7 +5,7 @@ function SearchBar(props) {
     return (
         <form>
             <div className="container">
-                <div class="align-items-center">
+                <div className="align-items-center">
                     <input
                     value={props.search}
                     onChange={props.handleInputChange}
