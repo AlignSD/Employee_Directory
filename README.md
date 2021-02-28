@@ -1,6 +1,6 @@
 # Employee_Directory.
 
-![Portforlio screen shot](plan-it-ss.png)
+![Portforlio screen shot](/public/images/Untitled.png)
 
 https://alignsd.github.io/Employee_Directory - Link To Website!
 
