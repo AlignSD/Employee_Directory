@@ -1,5 +1,11 @@
 import React from "react";
 import { useTable, useFilters, useState, useSortBy } from "react-table";
+import Bootstrap from "bootstrap/dist/css/bootstrap.min.css";
+import MaUTable from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
 
 export default function Table({ columns, data }) {
   // const [filterInput, setFilterInput] = useState("");
@@ -45,41 +51,49 @@ export default function Table({ columns, data }) {
   */
   return (
     
-    <table {...getTableProps()}>
-      <thead>
+    <MaUTable {...getTableProps()}>
+      <TableHead>
         {headerGroups.map(headerGroup => (
-          <tr {...headerGroup.getHeaderGroupProps()}>
+          <TableRow {...headerGroup.getHeaderGroupProps()}>
             {headerGroup.headers.map(column => (
-              <th
-              {...column.getHeaderProps(column.getSortByToggleProps())}
+              <TableCell {...column.getHeaderProps(column.getSortByToggleProps())}
               className={
                 column.isSorted
                   ? column.isSortedDesc
                     ? "sort-desc"
                     : "sort-asc"
                   : ""
-              }
-            >
-              {column.render("Header")}
-            </th>
+              }>
+                {column.render("Header")}
+              </TableCell>
             ))}
-          </tr>
+          </TableRow>
         ))}
-      </thead>
-      <tbody {...getTableBodyProps()}>
+      </TableHead>
+      <TableBody>
         {rows.map((row, i) => {
           prepareRow(row);
           return (
-            <tr {...row.getRowProps()}>
+            <TableRow {...row.getRowProps()}>
               {row.cells.map(cell => {
-                return <td {...cell.getCellProps()}>{cell.render("Cell")}</td>;
+                return (
+                  <TableCell {...cell.getCellProps()}>
+                    {cell.render("Cell")}
+                  </TableCell>
+                );
               })}
-            </tr>
-        );
-    })}
-  </tbody>
-</table>
-
-);
-}   
-    
+            </TableRow>
+          );
+        })}
+      </TableBody>
+    </MaUTable>
+  );
+};
+// {...column.getHeaderProps(column.getSortByToggleProps())}
+// className={
+//   column.isSorted
+//     ? column.isSortedDesc
+//       ? "sort-desc"
+//       : "sort-asc"
+//     : ""
+// }
